@@ -6,44 +6,22 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 import numpy as np
-import pickle
+from utils.Transform import TransformMatriz
 
-
-#leer data para entrenar
-
-data = pd.read_csv('./data/Reviews.csv')
 
 #descomponer la data valor = resultado
 
-reviews = data['review_es'].tolist()
-label = data['sentimiento'].tolist()
+reviews, label = TransformMatriz.info()
 
 #tokenizar datos 
 
-
-tokenizer = Tokenizer(num_words=10000,oov_token="<OOV>")
-
-tokenizer.fit_on_texts(reviews)
-
-#guardar tokenizador
-
-with open('./model/tokenizer.pickle', 'wb') as handle:
-    pickle.dump(tokenizer, handle)
+tokenizer = TransformMatriz.tokenizer()
 
 #convertir reseñas a secuencias de numeros
 
-sequences = tokenizer.texts_to_sequences(reviews)
-
-#tamaño maiximo de secuencia
-
-max_length = max([len(x) for x in sequences])
-
-with open('./model/max_length.pickle', 'wb') as handle:
-    pickle.dump(max_length, handle)
-
 #Rellenar secuencias para tenga una misma longitud
 
-padded = pad_sequences(sequences, maxlen=max_length, padding='post')
+padded, max_length = TransformMatriz.sequences(tokenizer)
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
 
@@ -53,7 +31,6 @@ x_train, x_test, y_train, y_test = train_test_split(padded, label, test_size=0.2
 
 y_train = label_encoder.fit_transform(y_train)
 y_test = label_encoder.transform(y_test)
-
 
 
 # Crear modelo

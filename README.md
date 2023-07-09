@@ -52,7 +52,7 @@ python model.py
 Pruebas de prediccion del modelo
 
 ```bash
-  python predict.py
+python predict.py
 ```
 
 ## Resultados del test 🚀

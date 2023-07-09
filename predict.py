@@ -2,7 +2,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pandas as pd
-import pickle
+from utils.Transform import TransformMatriz
 
 
 model = load_model('./model/model.h5')
@@ -19,19 +19,18 @@ test = [
      'Una de las peliculas mas aburridas que he visto',
      'La forma en que me trata es la mas horrible',
      'Amo la pelicula de principio a fin',
+     'Esa persona es muy mala',
 ]
 
 
 # Convertir las reseñas en secuencias de números
 
-with open('./model/tokenizer.pickle', 'rb') as handle:
-    tokenizer = pickle.load(handle)
 
+tokenizer = TransformMatriz.tokenizer()
 
 test_sequences = tokenizer.texts_to_sequences(test)
 
-with open('./model/max_length.pickle', 'rb') as handle:
-    max_length = pickle.load(handle)
+(padded_train_data, max_length) = TransformMatriz.sequences(tokenizer)
 
 test_padded_secuences = pad_sequences(test_sequences, maxlen=max_length, padding='post')
 
@@ -41,7 +40,7 @@ predictions = model.predict(test_padded_secuences)
 # Resultados de las predicciones
 
 for review, prediction in zip(test, predictions):
-    if(prediction > 0.5):
+    if(prediction > 0.6):
         print(f'{review} =  POSITIVA')
     else:
         print(f'{review} =  NEGATIVA')
