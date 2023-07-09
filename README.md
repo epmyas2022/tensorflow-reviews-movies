@@ -1,10 +1,7 @@
-
 # Reviews Movies
- creacion de modelo para calificar una oracion
- usando reseñas de peliculas 
 
-
-
+creacion de modelo para calificar una oracion
+usando reseñas de peliculas
 
 ## Requerimientos
 
@@ -25,16 +22,18 @@ Se necesitan las siguientes dependencias de python 3.8
 ```bash
   pip install matplotlib
 ```
+
 ```bash
   pip install gdown
 
 
 ```
 
-
 ## Desargar reseñas
 
 ```bash
+mkdir data
+
 cd data
 ```
 
@@ -48,16 +47,6 @@ gdown --id 1iN4CfzhuXFWzMaplAbrzlJPKoYgIW30c
 python model.py
 ```
 
-
-
-
-
-
-
-
-
-
-    
 ## Running Tests
 
 Pruebas de prediccion del modelo
@@ -68,22 +57,10 @@ Pruebas de prediccion del modelo
 
 ## Resultados del test 🚀
 
-
-
-| Oracion  |  Review 
-| -------- | ---- |
-| Terrible servicio, no lo recomiendo    | NEGATIVA 😡  | 
-| Excelente servicio, muy recomendado    | POSITIVA   😄| 
-| Una de las peliculas mas aburridas que he visto   | NEGATIVA 😡  |
-|La forma en que me trata es la mas horrible | NEGATIVA  😡 |
-|Amo la pelicula de principio a fin| POSITIVA 😄 |
-
-
-
-
-
-
-
-
-
-
+| Oracion                                         | Review      |
+| ----------------------------------------------- | ----------- |
+| Terrible servicio, no lo recomiendo             | NEGATIVA 😡 |
+| Excelente servicio, muy recomendado             | POSITIVA 😄 |
+| Una de las peliculas mas aburridas que he visto | NEGATIVA 😡 |
+| La forma en que me trata es la mas horrible     | NEGATIVA 😡 |
+| Amo la pelicula de principio a fin              | POSITIVA 😄 |
