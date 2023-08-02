@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  reviews-project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: reviews-project:castor
+    container_name: reviews
+    restart: always
+    volumes:
+      - data:/usr/src/app/data
+volumes:
+  data:
+    external: false

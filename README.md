@@ -47,6 +47,12 @@ gdown --id 1iN4CfzhuXFWzMaplAbrzlJPKoYgIW30c
 python model.py
 ```
 
+##  Con Docker
+Se montara un contenedor con todo lo necesario para correr el modelo
+```bash
+docker-compose up -d
+```
+
 ## Running Tests
 
 Pruebas de prediccion del modelo
