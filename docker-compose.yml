@@ -4,12 +4,12 @@ services:
   reviews-project:
     build:
       context: .
+      target: base
       dockerfile: Dockerfile
     image: reviews-project:castor
-    container_name: reviews
     restart: always
+    container_name: reviews
     volumes:
-      - data:/usr/src/app/data
-volumes:
-  data:
-    external: false
+      - .:/usr/src/app
+      - /usr/src/app/data
+  

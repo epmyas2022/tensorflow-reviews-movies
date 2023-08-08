@@ -1,12 +1,8 @@
-FROM python:3.8-bullseye
+FROM python:3.8-bullseye as base
 
 #WORDIR
 
 WORKDIR /usr/src/app
-
-#COPY
-
-COPY . .
 
 
 RUN pip install virtualenv
@@ -30,7 +26,7 @@ RUN mkdir data && \
 
 #DEFINIR VOLUMEN
 
-VOLUME [ "/usr/src/app/data" ]  
+VOLUME [ "/usr/src/app" ]  
 
 
 CMD [ "python", "predict.py"]
